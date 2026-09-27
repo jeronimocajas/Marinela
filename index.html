@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Una carta especial para Marinela.">
+  <title>Para Marinela 💗</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Poppins:wght@300;400;500;600&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg1: #fff5f8;
+      --bg2: #f9e8f0;
+      --rose: #c95f83;
+      --rose-dark: #91425f;
+      --text: #4d3741;
+      --paper: rgba(255,255,255,.88);
+      --shadow: 0 25px 70px rgba(112, 50, 77, .18);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 15%, rgba(255,255,255,.9), transparent 25%),
+        radial-gradient(circle at 85% 80%, rgba(233,163,188,.28), transparent 30%),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
+      overflow-x: hidden;
+    }
+
+    /* Fondo animado */
+    .glow {
+      position: fixed;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: .28;
+      pointer-events: none;
+      animation: drift 12s ease-in-out infinite alternate;
+      z-index: 0;
+    }
+
+    .glow.one { background: #f2a6c1; top: -120px; left: -100px; }
+    .glow.two { background: #d7a4ef; right: -120px; bottom: -130px; animation-delay: -5s; }
+
+    @keyframes drift {
+      from { transform: translate(0,0) scale(1); }
+      to { transform: translate(45px, 25px) scale(1.12); }
+    }
+
+    .floating {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -40px;
+      opacity: 0;
+      animation: rise linear infinite;
+      user-select: none;
+    }
+
+    @keyframes rise {
+      0% { transform: translateY(0) rotate(0deg) scale(.7); opacity: 0; }
+      12% { opacity: .65; }
+      85% { opacity: .35; }
+      100% { transform: translateY(-115vh) rotate(35deg) scale(1.1); opacity: 0; }
+    }
+
+    main {
+      position: relative;
+      z-index: 2;
+      width: min(920px, 92%);
+      margin: 0 auto;
+      padding: 70px 0 90px;
+    }
+
+    .hero {
+      text-align: center;
+      min-height: 42vh;
+      display: grid;
+      place-items: center;
+      animation: fadeUp 1s ease both;
+    }
+
+    .hero-inner { max-width: 760px; }
+
+    .tiny {
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-size: .72rem;
+      color: var(--rose);
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(3.4rem, 10vw, 7rem);
+      line-height: .95;
+      font-weight: 400;
+      color: var(--rose-dark);
+      text-shadow: 0 8px 30px rgba(145,66,95,.12);
+    }
+
+    .subtitle {
+      margin: 24px auto 0;
+      max-width: 620px;
+      font-size: clamp(1rem, 2vw, 1.18rem);
+      line-height: 1.8;
+      color: #6c525d;
+    }
+
+    .open-btn {
+      margin-top: 30px;
+      border: 0;
+      cursor: pointer;
+      color: white;
+      background: linear-gradient(135deg, #d47798, #a94f72);
+      padding: 14px 27px;
+      border-radius: 999px;
+      font: 600 .92rem 'Poppins', sans-serif;
+      box-shadow: 0 12px 30px rgba(169,79,114,.25);
+      transition: .3s ease;
+    }
+
+    .open-btn:hover {
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 18px 38px rgba(169,79,114,.3);
+    }
+
+    .letter-wrap {
+      margin-top: 20px;
+      perspective: 1200px;
+    }
+
+    .letter {
+      position: relative;
+      background: var(--paper);
+      border: 1px solid rgba(201,95,131,.13);
+      border-radius: 28px;
+      padding: clamp(28px, 6vw, 65px);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(15px);
+      transform-origin: top center;
+      animation: paperIn 1.2s .2s ease both;
+    }
+
+    .letter::before {
+      content: "♥";
+      position: absolute;
+      top: 23px;
+      right: 30px;
+      color: rgba(201,95,131,.16);
+      font-size: 2rem;
+    }
+
+    .letter::after {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border: 1px solid rgba(201,95,131,.09);
+      border-radius: 20px;
+      pointer-events: none;
+    }
+
+    .salutation {
+      font-family: 'DM Serif Display', serif;
+      color: var(--rose-dark);
+      font-size: 2rem;
+      margin-bottom: 25px;
+      font-style: italic;
+    }
+
+    .letter p {
+      position: relative;
+      z-index: 2;
+      font-size: 1rem;
+      line-height: 2;
+      margin-bottom: 22px;
+    }
+
+    .highlight {
+      color: var(--rose-dark);
+      font-weight: 600;
+    }
+
+    .promise {
+      margin: 35px 0;
+      padding: 28px 25px;
+      text-align: center;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(246,215,226,.62), rgba(255,255,255,.7));
+      border: 1px solid rgba(201,95,131,.12);
+      position: relative;
+      z-index: 2;
+    }
+
+    .promise span {
+      display: block;
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.35rem, 4vw, 1.8rem);
+      line-height: 1.5;
+      color: var(--rose-dark);
+    }
+
+    .signature {
+      text-align: right;
+      margin-top: 38px;
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.55rem;
+      color: var(--rose-dark);
+      font-style: italic;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 55px;
+      color: #8b707b;
+      font-size: .82rem;
+      letter-spacing: 1px;
+    }
+
+    .footer .heart-icon {
+      display: inline-block;
+      animation: beat 1.3s infinite;
+      color: var(--rose);
+    }
+
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      15% { transform: scale(1.25); }
+      30% { transform: scale(1); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(35px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes paperIn {
+      from { opacity: 0; transform: rotateX(-12deg) translateY(35px); }
+      to { opacity: 1; transform: rotateX(0) translateY(0); }
+    }
+
+    .hidden-letter {
+      opacity: 0;
+      transform: translateY(35px);
+      max-height: 0;
+      overflow: hidden;
+      margin-top: 0;
+      transition: opacity .7s ease, transform .7s ease, max-height 1s ease, margin .7s ease;
+    }
+
+    .hidden-letter.show {
+      opacity: 1;
+      transform: translateY(0);
+      max-height: 3000px;
+      margin-top: 20px;
+    }
+
+    .sparkle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 10;
+      animation: sparkle .9s ease forwards;
+    }
+
+    @keyframes sparkle {
+      0% { opacity: 1; transform: scale(.3) translateY(0); }
+      100% { opacity: 0; transform: scale(1.2) translateY(-35px); }
+    }
+
+    @media (max-width: 600px) {
+      main { padding-top: 40px; }
+      .hero { min-height: 45vh; }
+      .letter { border-radius: 20px; }
+      .letter p { font-size: .95rem; line-height: 1.85; }
+      .letter::after { inset: 8px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="glow one"></div>
+  <div class="glow two"></div>
+  <div class="floating" aria-hidden="true"></div>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="tiny">Una carta para alguien especial</div>
+        <h1>Marinela</h1>
+        <p class="subtitle">
+          Hay personas que llegan a nuestra vida y hacen que todo se sienta un poquito mejor.
+          Esta carta es para recordarte lo increíble que eres.
+        </p>
+        <button class="open-btn" id="openBtn">Abrir mi carta ♥</button>
+      </div>
+    </section>
+
+    <section class="letter-wrap">
+      <article class="letter hidden-letter" id="letter">
+        <div class="salutation">Querida Marinela:</div>
+
+        <p>
+          Quiero aprovechar este momento para decirte algo que quizá no te digo lo suficiente:
+          <span class="highlight">eres una persona realmente grandiosa.</span>
+          No solamente por las cosas que haces, sino por la persona que eres, por tu manera de
+          tratar a los demás, por tu forma de enfrentar las situaciones y por esa esencia tan tuya
+          que hace que sea muy fácil apreciarte y quererte como amiga.
+        </p>
+
+        <p>
+          Me siento muy afortunado de poder llamarte mi amiga. Valoro muchísimo cada conversación,
+          cada momento compartido, cada risa y hasta esos pequeños momentos en los que simplemente
+          estamos ahí, sin necesidad de hacer nada especial. Tu amistad es de esas cosas que uno
+          aprende a valorar cada vez más con el tiempo, porque tener a alguien genuino y especial
+          cerca no es algo que deba darse por sentado.
+        </p>
+
+        <div class="promise">
+          <span>
+            “Si algún día estás en problemas, cansada, demasiado ocupada
+            o simplemente necesitas que alguien te escuche, puedes contar conmigo.”
+          </span>
+        </div>
+
+        <p>
+          No importa si tienes demasiadas cosas encima, si no sabes cómo explicar lo que te pasa
+          o si simplemente necesitas compañía. <span class="highlight">No tienes que sentir que estás
+          molestando ni que tienes que resolver todo por tu cuenta.</span> Si puedo ayudarte, voy a
+          hacerlo; y si no puedo solucionar lo que estés viviendo, al menos voy a estar ahí para
+          escucharte y acompañarte.
+        </p>
+
+        <p>
+          Quiero que tengas algo muy claro: nuestra amistad no depende de hablar todos los días ni
+          de estar siempre disponibles. Sé que cada uno tiene sus responsabilidades, sus
+          preocupaciones y sus propios momentos complicados. Pero eso no cambia el cariño, el respeto
+          y el aprecio que tengo por ti.
+        </p>
+
+        <p>
+          <span class="highlight">Cuando me necesites, aquí voy a estar, en cualquier momento y de la manera que pueda.</span>
+        </p>
+
+        <p>
+          Gracias por ser tú, Marinela. Nunca dudes de lo valiosa que eres ni de todo lo bueno que
+          aportas a las personas que te rodean. Espero que la vida te permita cumplir cada uno de
+          tus sueños y que, cuando lleguen los momentos difíciles, recuerdes que no tienes que
+          enfrentarlos sola.
+        </p>
+
+        <p>
+          Gracias por ser una amiga tan increíble. Te aprecio muchísimo y siempre podrás contar conmigo.
+        </p>
+
+        <div class="signature">
+          Con mucho cariño,<br>
+          Tu amigo ♥
+        </div>
+      </article>
+    </section>
+
+    <div class="footer">
+      Hecho con cariño para Marinela <span class="heart-icon">♥</span>
+    </div>
+  </main>
+
+  <script>
+    const floating = document.querySelector('.floating');
+    const symbols = ['♥', '♡', '✦', '·'];
+
+    function createHeart() {
+      const el = document.createElement('span');
+      el.className = 'heart';
+      el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+      el.style.left = Math.random() * 100 + 'vw';
+      el.style.fontSize = (12 + Math.random() * 22) + 'px';
+      el.style.animationDuration = (7 + Math.random() * 8) + 's';
+      el.style.animationDelay = Math.random() * 3 + 's';
+      floating.appendChild(el);
+
+      setTimeout(() => el.remove(), 16000);
+    }
+
+    for (let i = 0; i < 16; i++) createHeart();
+    setInterval(createHeart, 1100);
+
+    const btn = document.getElementById('openBtn');
+    const letter = document.getElementById('letter');
+
+    btn.addEventListener('click', () => {
+      letter.classList.toggle('show');
+      btn.textContent = letter.classList.contains('show')
+        ? 'Cerrar mi carta ♥'
+        : 'Abrir mi carta ♥';
+
+      if (letter.classList.contains('show')) {
+        setTimeout(() => letter.scrollIntoView({ behavior: 'smooth', block: 'start' }), 120);
+      }
+    });
+
+    // Pequeño efecto de destellos al hacer clic.
+    document.addEventListener('click', (e) => {
+      for (let i = 0; i < 3; i++) {
+        const s = document.createElement('span');
+        s.className = 'sparkle';
+        s.textContent = i === 1 ? '♥' : '✦';
+        s.style.left = (e.clientX + (Math.random() * 35 - 17)) + 'px';
+        s.style.top = (e.clientY + (Math.random() * 35 - 17)) + 'px';
+        s.style.fontSize = (10 + Math.random() * 10) + 'px';
+        document.body.appendChild(s);
+        setTimeout(() => s.remove(), 900);
+      }
+    });
+  </script>
+</body>
+</html>
